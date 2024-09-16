@@ -15,7 +15,7 @@ urlpatterns = [
     path(route='register', view=views.registration, name='register'),
 
     # Path for getting dealerships
-    path(route='get_dealers', view=views.get_dealerships, name='get_dealers'),
+    path(route='get_dealers/', view=views.get_dealerships, name='get_dealers'),
     path(route='get_dealers/<str:state>', view=views.get_dealerships, name='get_dealers_by_state'),
 
     # Path for getting dealer details by ID
