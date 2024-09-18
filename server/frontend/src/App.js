@@ -13,9 +13,10 @@ function App() {
       <Route path="/register" element={<Register />} /> {/* Register route */}
       <Route path="/dealers" element={<Dealers />} />   {/* Dealers route */}
       <Route path="/dealer/:id" element={<Dealer />} /> {/* Dealer route */}
-      <Route path="/postreview/:id" element={<PostReview/>} />
+      <Route path="/postreview/:id" element={<PostReview/>} /> {/* Post review route */}
     </Routes>
   );
 }
 
 export default App;
+
