@@ -77,11 +77,7 @@ app.get('/fetchDealers/:state', async (req, res) => {
 app.get('/fetchDealer/:id', async (req, res) => {
   try {
     const documents = await Dealerships.find({ id: req.params.id });
-    if (document) {
-      res.json(document);
-    } else {
-      res.status(404).json({ error: 'Dealer not found' });
-    }
+    res.json(documents);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching document' });
   }
