@@ -42,7 +42,11 @@ def login_user(request):
 @csrf_exempt
 def logout_request(request):
     if request.method == 'POST':
-        username = request.user.username if request.user.is_authenticated else ""
+        username = (
+            request.user.username
+            if request.user.is_authenticated
+            else ""
+        )
         logout(request)
         response_data = {
             "userName": username,
