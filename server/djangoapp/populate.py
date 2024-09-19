@@ -86,4 +86,3 @@ def initiate():
             name=data['name'], make=data['make'], type=data['type'],
             year=data['year'], dealer_id=data['dealer_id']
         )
-

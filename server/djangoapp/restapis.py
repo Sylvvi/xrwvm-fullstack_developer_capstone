@@ -51,4 +51,3 @@ def post_review(data_dict):
         # If any network or request-related error occurs
         print(f"Network exception occurred: {e}")
         return None
-

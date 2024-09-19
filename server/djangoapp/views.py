@@ -120,7 +120,7 @@ def get_dealer_reviews(request, dealer_id):
 def add_review(request):
     if not request.user.is_authenticated:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
-    
+
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
