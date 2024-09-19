@@ -1,4 +1,3 @@
-from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -12,6 +11,7 @@ from .restapis import get_request, analyze_review_sentiments, post_review
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
 
 @csrf_exempt
 def login_user(request):
@@ -124,8 +124,8 @@ def add_review(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200, "message": "Review added successfully"})
-        except Exception as e:
+        except Exception:
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     return JsonResponse({"status": 405, "message": "Method not allowed"})
