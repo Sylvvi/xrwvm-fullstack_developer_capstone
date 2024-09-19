@@ -23,11 +23,11 @@ class CarModel(models.Model):
 
     make = models.ForeignKey(
         CarMake, on_delete=models.CASCADE, related_name='models'
-    )  # Many-to-One relationship
-    dealer_id = models.IntegerField()  # Refers to a dealer created in Cloudant database
+    )
+    dealer_id = models.IntegerField()
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=10, choices=CAR_TYPE_CHOICES, default='SEDAN')
-    year = models.DateField()  # Updated to DateField for the year
+    year = models.DateField()
 
     def __str__(self):
-        return f"{self.make.name} {self.name} ({self.year.year})"  # Print car make and model
+        return f"{self.make.name} {self.name} ({self.year.year})"
