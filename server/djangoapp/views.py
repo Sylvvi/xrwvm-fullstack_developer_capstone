@@ -7,11 +7,14 @@ import logging
 
 from .populate import initiate
 from .models import CarMake, CarModel
-from .restapis import get_request, analyze_review_sentiments, post_review
+from .restapis import (
+    get_request,
+    analyze_review_sentiments,
+    post_review
+)
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-
 
 @csrf_exempt
 def login_user(request):
@@ -34,7 +37,6 @@ def login_user(request):
         return JsonResponse(response_data)
     return JsonResponse({"status": "Invalid request method"}, status=405)
 
-
 @csrf_exempt
 def logout_request(request):
     if request.method == 'POST':
@@ -46,7 +48,6 @@ def logout_request(request):
         }
         return JsonResponse(response_data)
     return JsonResponse({"status": "Invalid request method"}, status=405)
-
 
 @csrf_exempt
 def registration(request):
@@ -87,7 +88,6 @@ def registration(request):
         return JsonResponse(data)
     return JsonResponse({"status": "Invalid request method"}, status=405)
 
-
 def get_cars(request):
     count = CarMake.objects.filter().count()
     if count == 0:
@@ -102,7 +102,6 @@ def get_cars(request):
     ]
     return JsonResponse({"CarModels": cars})
 
-
 def get_dealerships(request, state="All"):
     endpoint = "/fetchDealers" if state == "All" else f"/fetchDealers/{state}"
     dealerships = get_request(endpoint)
@@ -110,7 +109,6 @@ def get_dealerships(request, state="All"):
         "status": 200,
         "dealers": dealerships
     })
-
 
 def get_dealer_details(request, dealer_id):
     if dealer_id:
@@ -121,7 +119,6 @@ def get_dealer_details(request, dealer_id):
             "dealer": dealership
         })
     return JsonResponse({"status": 400, "message": "Bad Request"})
-
 
 def get_dealer_reviews(request, dealer_id):
     if dealer_id:
@@ -135,7 +132,6 @@ def get_dealer_reviews(request, dealer_id):
             "reviews": reviews
         })
     return JsonResponse({"status": 400, "message": "Bad Request"})
-
 
 @csrf_exempt
 def add_review(request):
