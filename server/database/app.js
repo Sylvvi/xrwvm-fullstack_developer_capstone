@@ -19,12 +19,11 @@ const Dealerships = require('./dealership');
 
 try {
   Reviews.deleteMany({}).then(() => {
-    Reviews.insertMany(reviews_data['reviews']);
+    Reviews.insertMany(reviews_data.reviews); // Changed to dot notation
   });
   Dealerships.deleteMany({}).then(() => {
-    Dealerships.insertMany(dealerships_data['dealerships']);
+    Dealerships.insertMany(dealerships_data.dealerships); // Changed to dot notation
   });
-
 } catch (error) {
   console.error('Error initializing database:', error);
 }
@@ -86,20 +85,20 @@ app.get('/fetchDealer/:id', async (req, res) => {
 
 // Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
-  data = JSON.parse(req.body);
+  const data = JSON.parse(req.body);
   const documents = await Reviews.find().sort({ id: -1 });
-  let new_id = documents[0]['id'] + 1;
+  let new_id = documents[0].id + 1; // Changed to dot notation
 
   const review = new Reviews({
-    "id": new_id,
-    "name": data['name'],
-    "dealership": data['dealership'],
-    "review": data['review'],
-    "purchase": data['purchase'],
-    "purchase_date": data['purchase_date'],
-    "car_make": data['car_make'],
-    "car_model": data['car_model'],
-    "car_year": data['car_year'],
+    id: new_id,
+    name: data.name, // Changed to dot notation
+    dealership: data.dealership, // Changed to dot notation
+    review: data.review, // Changed to dot notation
+    purchase: data.purchase, // Changed to dot notation
+    purchase_date: data.purchase_date, // Changed to dot notation
+    car_make: data.car_make, // Changed to dot notation
+    car_model: data.car_model, // Changed to dot notation
+    car_year: data.car_year // Changed to dot notation
   });
 
   try {
